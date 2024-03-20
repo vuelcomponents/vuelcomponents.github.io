@@ -67,19 +67,19 @@ const vuelCalendarOptions = ref<IVuelCalendarOptions>({
     {
         /* property draggableEvents must be set to true in VuelCalendarOptions */
         /* The function returns the drop object(VuelCalendarEvent&VuelCalendarDay&MousEvent) that was being dragged, along with the time and date on timeline.*/
-        /* additional functions are included : dropped.decline() & dropped.accept()
+        /* additional functions are included : dropped.decline() & dropped.accept() */
     },
     onEventStartResized:(resized:VuelCalendarResize)=>
     {
         /* property resizableEvents must be set to true in VuelCalendarOptions */
         /* Event returns the resize object that was being resized, along with old and new start datetime. */
-        /* additional functions are included : resized.decline() & resized.accept()
+        /* additional functions are included : resized.decline() & resized.accept() */
     },
      onEventEndResized:(resized:VuelCalendarResize)=>
     {
         /* property resizableEvents must be set to true in VuelCalendarOptions */
         /* Event returns the resize object that was being resized, along with old and new end datetime. */
-        /* additional functions are included : resized.decline() & resized.accept()
+        /* additional functions are included : resized.decline() & resized.accept() */
     },
 });
 
