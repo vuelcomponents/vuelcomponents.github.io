@@ -75,6 +75,12 @@ const vuelCalendarOptions = ref<IVuelCalendarOptions>({
         /* Event returns the resize object that was being resized, along with old and new start datetime. */
         /* additional functions are included : resized.decline() & resized.accept()
     },
+     onEventEndResized:(resized:VuelCalendarResize)=>
+    {
+        /* property resizableEvents must be set to true in VuelCalendarOptions */
+        /* Event returns the resize object that was being resized, along with old and new end datetime. */
+        /* additional functions are included : resized.decline() & resized.accept()
+    },
 });
 
 /*
