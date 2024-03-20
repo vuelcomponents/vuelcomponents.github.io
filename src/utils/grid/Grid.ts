@@ -10,15 +10,16 @@ import type {
   GridOptions,
   GridReadyEvent,
   RowNode,
-  SelectionChangedEvent
+  SelectionChangedEvent,
+    RowHeightParams
 } from 'ag-grid-community';
-import type { TinyEmitter } from 'tiny-emitter';
+
 export interface IGrid {
   service?: Service;
   api?: GridApi;
   selected: [];
   searchText: string;
-  emitter?: TinyEmitter;
+  emitter?: any;
   onCellClicked: (params: CellClickedEvent) => void;
   onCellValueChanged: (params: CellValueChangedEvent) => void;
   onSelectionChanged: (params: SelectionChangedEvent) => void;
@@ -34,7 +35,7 @@ export class Grid implements IGrid {
   api?: GridApi;
   selected: any = [];
   searchText = '';
-  emitter?: TinyEmitter;
+  emitter?: any;
   updateDialog = () => {
     console.warn('update dialog has not been implemented');
   };
@@ -45,7 +46,7 @@ export class Grid implements IGrid {
     console.warn('on cell value changed has not been implemented');
     console.warn('default update method has been triggered');
     if (this.service) {
-      this.service.update(params.data, true).then((res) => {
+      this.service.update(params.data, true).then((res:any) => {
         switch (res?.status) {
           case 200:
             params.node.setData(res.data);
@@ -170,17 +171,14 @@ export class Grid implements IGrid {
     onSelectionChanged: (params: SelectionChangedEvent) => {
       this.onSelectionChanged(params);
     },
-    getRowStyle: (params: any) => {
-      if (params.node.rowIndex % 2 === 0) {
-        return { background: '#27344b', color:'#fff' , borderBottom:'solid 2px #2e3c54'};
-      } else {
-        return { background: '#2a374f', color:'#fff', borderBottom:'solid 2px #2e3c54' };
-      }
-    },
+    // getRowStyle: (params: any) => {
+    //   if (params.node.rowIndex % 2 === 0) {
+    //     return { background: '#27344b', color:'#fff' , borderBottom:'solid 2px #2e3c54'};
+    //   } else {
+    //     return { background: '#2a374f', color:'#fff', borderBottom:'solid 2px #2e3c54' };
+    //   }
+    // },
     defaultColDef,
-    sideBar: {
-      toolPanels: ['filters']
-    }
   };
   data = [];
 }

@@ -17,6 +17,10 @@ export default defineComponent({
     calendarApi:{
       type:Object as PropType<IVuelCalendarApi>,
       required:true
+    },
+    close:{
+      type:Function,
+      required:true,
     }
   },
   data(){
@@ -31,12 +35,12 @@ export default defineComponent({
   },
   methods:{
     editEvent(){
-      const event:VuelCalendarEvent = {
+      this.calendarApi.configureEventsByParam('id', this.event.id!,{
         start:this.fields.start,
         end:this.fields.end,
         label:this.fields.label,
-      }
-      this.calendarApi.addEvents([event])
+      })
+      this.close()
     }
   }
 

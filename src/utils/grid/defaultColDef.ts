@@ -8,7 +8,7 @@ const colDef: ColDef = {
   filter: true,
   sortable: true,
   // headerClass:'grid-itm-header',
-  editable: true,
+  editable: false,
   suppressKeyboardEvent:(params:SuppressKeyboardEventParams):any=>{
     if (params.event?.key === 'Enter') {
       return false;

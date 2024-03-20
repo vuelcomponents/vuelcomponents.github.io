@@ -22,6 +22,10 @@ export default defineComponent({
     calendarApi:{
       type:Object as PropType<IVuelCalendarApi>,
       required:true
+    },
+    close:{
+      type:Function,
+      required:true,
     }
   },
   data(){
@@ -49,6 +53,7 @@ export default defineComponent({
         }
       }
       this.calendarApi.addEvents([event])
+      this.close()
     }
   }
 

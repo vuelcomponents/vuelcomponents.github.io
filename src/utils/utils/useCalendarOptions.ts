@@ -1,15 +1,24 @@
-import type {IVuelCalendarApi, VuelCalendarEvent, VuelCalendarDay, VuelCalendarDrop} from "vuelcalendar";
+import type {
+    IVuelCalendarApi,
+    VuelCalendarEvent,
+    VuelCalendarDay,
+    VuelCalendarDrop,
+    VuelCalendarResize, IVuelCalendarOptions
+} from "vuelcalendar";
 import {getMenu} from "@/utils/utils/getMenu";
 import type {Ref} from "vue";
 import w1 from "@/assets/w1.png";
+
 export const useCalendarOptions = (setCalendarApi:(api:IVuelCalendarApi)=>IVuelCalendarApi,
                                    menu:Ref<any>,
                                    fields:Ref<any>,
                                    onDayClicked:(day:VuelCalendarDay)=>void,
                                    onEventDropped:(dropped:VuelCalendarDrop)=>void,
-                                   onEventClicked:(event:VuelCalendarEvent)=>void)=>{
-   return  {
-        calendarApi: null,
+                                   onEventClicked:(event:VuelCalendarEvent)=>void,
+                                   onEventStartResized:(resized:VuelCalendarResize)=>void,
+                                   onEventEndResized:(resized:VuelCalendarResize)=>void) =>
+{
+   const options:IVuelCalendarOptions = {
         height: 600,
         theme: 'dark',
         startDate: new Date(),
@@ -17,6 +26,7 @@ export const useCalendarOptions = (setCalendarApi:(api:IVuelCalendarApi)=>IVuelC
         startHour: 6,
         renderer: 'EventMainRenderer',
         draggableEvents: true,
+        resizableEvents:true,
         onVuelCalendarApiReady: (api: any) => {
             setCalendarApi(api)
             menu.value = getMenu(api, fields.value)
@@ -39,5 +49,8 @@ export const useCalendarOptions = (setCalendarApi:(api:IVuelCalendarApi)=>IVuelC
             console.log('You clicked a on timeline', day)
         },
         onEventDropped: onEventDropped,
+        onEventStartResized:onEventStartResized,
+        onEventEndResized:onEventEndResized
     }
+    return options;
 }

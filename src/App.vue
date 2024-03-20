@@ -30,9 +30,15 @@ export default defineComponent({
       <i class="mdi mdi-calendar pr-1"/> <p class="font-bold">VuelCalendar</p>
     </div>
   </nav>
-  <div class="col-span-10 bg-surface-800 font-mulish p-3  lg:p-20">
+  <div class="col-span-10 bg-surface-800 font-mulish p-3  lg:p-10">
     <router-view/>
   </div>
 </main>
 </template>
 
+<style>
+.centered *{
+  display:flex;
+  justify-content:center;
+}
+</style>
