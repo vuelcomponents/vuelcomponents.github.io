@@ -38,6 +38,8 @@ const vuelCalendarOptions = ref<IVuelCalendarOptions>({
     draggableEvents:true,
     /* set if you want to implement resizable events -> onEventStartResized(resized:VuelCalendarResize); onEventEndResized(resized:VuelCalendarResize); -< then implement these methods to operate on resized events on timeline */
     resizableEvents:true,
+    showCursorTime:true,
+    // throwErrors:false,
     /* a function being resolved, after calendar Api is ready */
     onVuelCalendarApiReady: (api: IVuelCalendarApi) => {
         calendarApi.value = api;
