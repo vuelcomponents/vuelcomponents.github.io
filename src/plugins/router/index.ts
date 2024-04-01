@@ -10,6 +10,7 @@ import CalendarAbout from "@/views/vuelcalendar/CalendarAbout.vue";
 import CalendarTypes from "@/views/vuelcalendar/CalendarTypes.vue";
 import CalendarParams from "@/views/vuelcalendar/CalendarParams.vue";
 import CalendarEvents from "@/views/vuelcalendar/CalendarEvents.vue";
+import CalendarPerformance from "@/views/vuelcalendar/CalendarPerformance.vue";
 
 const routes = [
     { path: '/', component: HomeView, redirect:{name:'preview'}},
@@ -53,6 +54,11 @@ const routes = [
                 path:'about',
                 name:'about',
                 component:CalendarAbout
+            },
+            {
+                path:'performance',
+                name:'performance',
+                component:CalendarPerformance
             },
         ]
     }

@@ -15,12 +15,13 @@ import { createVCodeBlock } from '@wdns/vue-code-block';
 import { VCodeBlock } from '@wdns/vue-code-block';
 import FunctionRenderer from "@/utils/grid/renderers/FunctionRenderer.vue";
 import TypesRenderer from "@/renderers/TypesRenderer.vue";
-
+import ToastService from 'primevue/toastservice';
 const VCodeBlockP = createVCodeBlock({
     // options
 });
 const app = createApp(App);
 app.use(router)
+app.use(ToastService);
 app.component('EventMainRenderer', EventMainRenderer)
 app.component('InputDate', Calendar)
 app.component('InputNumber', InputNumber)

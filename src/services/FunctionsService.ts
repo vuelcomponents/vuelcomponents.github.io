@@ -143,6 +143,24 @@ export class FunctionsService extends Service{
                 returns:'void',
                 description: 'This function is responsible for switching the calendar view mode from daily to monthly and vice versa.'
             },
+            {
+                id: 8,
+                name: 'Set treshold ',
+                call: 'setTresHold',
+                return:'void',
+                code:'api.setTresHold(15); ',
+                args: 'treshold: Number',
+                description: 'This function changes the threshold responsible for the threshold during the dragging of events. Read more in \'params\'.'
+            },
+            {
+                id: 9,
+                name: 'Set renderer ',
+                call: 'setRenderer',
+                return:'void',
+                code:'api.setRenderer(\'ExampleRenderer\'); ',
+                args: 'renderer: String',
+                description: 'This function changes the renderer, a parameter responsible for substituting the installed component into event elements instead of the default event backdrop.'
+            },
 
         ]
     }

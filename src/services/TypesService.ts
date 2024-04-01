@@ -6,12 +6,12 @@ export class TypesService extends Service{
             {
                 id:3,
                 type:'VuelCalendarDrop',
-                structure:'    clickEvent:MouseEvent;\n' +
-                    '    date:Date;\n' +
-                    '    time:string;\n' +
-                    '    events:Array<VuelCalendarEvent>\n' +
+                structure:'clickEvent:MouseEvent;\n' +
+                    '    newStartDateTime:Date;\n' +
+                    '    oldStartDateTime:Date;\n' +
+                    '    newEndDateTime:Date;\n' +
+                    '    oldEndDateTime:Date;\n' +
                     '    event:VuelCalendarEvent;\n' +
-                    '    endDateCorrection:Date;\n' +
                     '    accept:()=>void;\n' +
                     '    decline:()=>void;'
             },

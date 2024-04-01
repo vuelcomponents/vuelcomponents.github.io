@@ -59,10 +59,12 @@ export class EventsService extends Service{
                     '{\n' +
                     '    /* calendarApi.configureEventsByParam(\'id\', dropped.event.id!, ' +
                     '    {\n' +
-                    '          start: dropped.date,\n' +
-                    '          end: dropped.endDateCorrection\n' +
+                    '          start: dropped.newStartDateTime,\n' +
+                    '          end: dropped.newEndDateTime\n' +
                     '    }); */\n' +
-                    '    dropped.accept(); /* or dropped.decline() */\n' +
+                    '    dropped.accept(); /* or dropped.decline()\n'+
+                    '    !its recommended to use accept() if your events doesnt owe unique Id\n' +
+                    '    event: {id:number|string} */\n' +
                     '},',
                 description:'[draggableEvents must be set to true in VuelCalendarOptions] Event returns the drop object(VuelCalendarEvent&VuelCalendarDay&MousEvent) that was being dragged, along with the time and date on timeline.'
             },

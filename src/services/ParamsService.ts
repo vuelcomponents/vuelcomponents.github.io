@@ -141,9 +141,52 @@ export class ParamsService extends Service{
                     '    resized.accept() ; /* or */ resized.decline() \n'  +
                     '};\n'
                 ,
-                description:'Set if you want to implement draggable events -> onEventDropped(drop:VuelCalendarDrop) -< then implement this method to catch dropped events on timeline'
+                description:'Set if you want to implement resizable events -> onEventStartResized(resized:VuelCalendarResize) & onEventEndResized:(resized:VuelCalendarResize) -< then implement these methods to catch resized events on timeline'
             },
-
+            {
+                id:10,
+                param:'throwErrors',
+                type:'boolean',
+                code:'vuelCalendarOptions: {\n' +
+                    '...\n' +
+                    'throwErrors:true\n' +
+                    '}',
+                description:'Setting invalid parameters will throw an error'
+            },
+            {
+                id:12,
+                param:'showCursorTime',
+                type:'boolean',
+                code:'vuelCalendarOptions: {\n' +
+                    '...\n' +
+                    'showCursorTime:true\n' +
+                    '}',
+                description:'Set to true will display a small div with current time by cursor position'
+            },
+            {
+                id:13,
+                param:'tresHold',
+                code:'vuelCalendarOptions: {\n' +
+                    '...\n' +
+                    'tresHold:15\n' +
+                    '}',
+                type:'Number',
+                description:'This parameter sets the threshold for the draggable event.\n'
+                    +' For example, if you set it to 15, when attempting to move it forwards or backwards, it will snap to: 6:00, 6:15, 6:30, 6:45, 7:00. \n'
+                    + 'If you set it to 30, it will snap to: 6:30, 7:00, 7:30, and so on.'
+            },
+            {
+                id:14,
+                param:'ignoreSafety',
+                code:'vuelCalendarOptions: {\n' +
+                    '...\n' +
+                    'ignoreSafety:false\n' +
+                    '}',
+                type:'boolean',
+                description:'It is not recommended to set this parameter to true;\n'
+                    +' however, if you do, the component will allow for setting longer time periods via dateRange and tolerate various irregularities beyond validation. \n'
+                    +' This may impact the correct functionality of the component as well as the performance of your application.'
+            },
         ]
     }
 }

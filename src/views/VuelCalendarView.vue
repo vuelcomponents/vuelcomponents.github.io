@@ -6,8 +6,8 @@
       lang="javascript"
       theme="night-owl"
   />
-  <div class="text-right mb-2 text-2xl font-orbitron text-surface-400">
-    VuelCalendar
+  <div class="text-right mb-2 text-2xl font-orbitron text-surface-400 flex items-center justify-end gap-2">
+    <img @click="redirectNPM" :src="npm" width="25" class="inline cursor-pointer" /> VuelCalendar v0.7
   </div>
   <main>
     <router-view/>
@@ -17,9 +17,13 @@
 <script setup lang="ts">
 import Menubar from "primevue/menubar";
 import $router from "@/plugins/router";
+import npm from '@/assets/npm.svg';
+function redirectNPM(){
+  window.open('https://www.npmjs.com/package/vuelcalendar')
+}
 const mainMenu =[
   {
-    label:'Preview',
+    label:'Demo',
     icon:'mdi mdi-magnify',
     command:()=>{$router.push({name:'preview'})}
   },
@@ -47,6 +51,11 @@ const mainMenu =[
     label:'Params',
     icon:'mdi mdi-data-matrix',
     command:()=>{$router.push({name:'params'})}
+  },
+  {
+    label:'Features v0.7^',
+    icon:'mdi mdi-speedometer',
+    command:()=>{$router.push({name:'performance'})}
   },
 ]
 

@@ -20,7 +20,7 @@
     "vue": "^3.3.8",
     "vue-prismjs": "^1.2.0",
     "vue-router": "^4.3.0",
-    "vuelcalendar": "^0.4.0"
+    "vuelcalendar": "^0.7.21"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",

@@ -13,8 +13,8 @@ export default {
       'my-4 rounded-md w-full',
 
       'shadow-lg',
-      'bg-surface-0 dark:bg-surface-800',
-      'ring-1 ring-inset ring-surface-200 dark:ring-surface-700 ring-offset-0',
+      'bg-surface-800 dark:bg-surface-800',
+      'ring-1 ring-inset ring-surface-700 dark:ring-surface-700 ring-offset-0',
       // Colors
       {
         'text-blue-500 dark:text-blue-300': props.message.severity == 'info',

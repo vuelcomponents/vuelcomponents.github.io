@@ -31,7 +31,7 @@ export default {
     root: ({ parent }) => ({
       class: [
         // Display
-        'flex flex-auto text-right',
+        'flex flex-auto text-right w-[100%]',
 
         //Text
         'sm:text-sm',

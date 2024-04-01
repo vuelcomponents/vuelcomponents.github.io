@@ -10,41 +10,41 @@
     <Menubar class="w-full mb-1" :model="menu" />
   </nav>
   <nav>
-    <div class="w-full grid gap-3 grid-cols-6 lg:grid-cols-10 p-3 min-h-[3rem] rounded-md shadow-md bg-ultra-kamikaze dark:bg-surface-900 ring-1 ring-inset ring-ultra-lightkamikaze dark:ring-surface-800 ring-offset-0">
-      <div class="col-span-2">
+    <div class="w-full grid gap-3 grid-cols-6 lg:grid-cols-8 p-3 min-h-[3rem] rounded-md shadow-md bg-ultra-kamikaze dark:bg-surface-900 ring-1 ring-inset ring-ultra-lightkamikaze dark:ring-surface-800 ring-offset-0">
+      <div class="col-span-3 lg:col-span-2">
         <div class="text-[0.7em] pb-1 text-surface-400">
           <i class="mdi mdi-clock-start pr-2"/>
           Start Hour
         </div>
-        <input-number v-model="fields.startHour"  :min="0" :max="23" class="w-full"/>
+        <input-number v-model="fields.startHour" @update:model-value="setStartHour"  :min="0" :max="23" class="w-full input-cor"/>
       </div>
-      <div class="col-span-2">
+      <div class="col-span-3 lg:col-span-2">
         <div class="text-[0.7em] pb-1 text-surface-400">
           <i class="mdi mdi-clock-end pr-2"/>
           End Hour
         </div>
-        <input-number v-model="fields.endHour"  :min="0" :max="24" class="w-full"/>
+        <input-number v-model="fields.endHour"  @update:model-value="setEndHour" :min="0" :max="24" class="w-full input-cor"/>
       </div>
-      <div class="col-span-2">
-        <div class="text-[0.7em] pb-1 text-surface-400">
-          <i class="mdi mdi-sort-numeric-ascending pr-2"/>
-          Days Forward
-        </div>
-        <input-number v-model="fields.daysForward"   :min="1" :max="62" class="w-full"/>
-      </div>
+<!--      <div class="col-span-6 lg:col-span-2">-->
+<!--        <div class="text-[0.7em] pb-1 text-surface-400">-->
+<!--          <i class="mdi mdi-sort-numeric-ascending pr-2"/>-->
+<!--          Days Forward-->
+<!--        </div>-->
+<!--        <input-number  @input="setDaysForward"  :min="1" :max="62" class="w-full"/>-->
+<!--      </div>-->
       <div class="col-span-3 lg:col-span-2">
         <div class="text-[0.7em] pb-1 text-surface-400">
           <i class="mdi mdi-calendar-start pr-2"/>
           Start Date
         </div>
-        <input-date v-model="fields.startDate" date-format="yy-mm-dd"  class="w-full"/>
+        <input-date v-model="fields.startDate" @update:model-value="setStartDate" date-format="yy-mm-dd"  class="w-full"/>
       </div>
       <div class="col-span-3 lg:col-span-2">
         <div class="text-[0.7em] pb-1 text-surface-400">
           <i class="mdi mdi-calendar-end pr-2"/>
           End Date
         </div>
-        <input-date v-model="fields.endDate"  date-format="yy-mm-dd"  class="w-full"/>
+        <input-date v-model="fields.endDate" @update:model-value="setEndDate"  date-format="yy-mm-dd"  class="w-full"/>
       </div>
     </div>
     <div class="text-[0.7em] text-surface-500">
@@ -76,6 +76,7 @@ import events from "@/utils/utils/events";
 import {getMenu} from "@/utils/utils/getMenu";
 import {useCalendarOptions} from "@/utils/utils/useCalendarOptions";
 import CalendarReadme from "@/views/vuelcalendar/CalendarReadme.vue";
+import {useToast} from "primevue/usetoast";
 
 const dialogs = ref<any>({
   edit: {
@@ -87,8 +88,9 @@ const dialogs = ref<any>({
     day: undefined as VuelCalendarDay | undefined,
   }
 });
+const toast = useToast();
 const fields = ref({
-  startHour: 6,
+  startHour: 0,
   endHour: 24,
   startDate: new Date().toLocaleDateString('en-CA'),
   endDate: new Date().toLocaleDateString('en-CA'),
@@ -107,6 +109,19 @@ const onEventClicked = (event: VuelCalendarEvent) => {
   dialogs.value.edit.open = true;
   dialogs.value.edit.event = event;
 };
+function rand(id:any){
+  let randomId = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  const array = new Uint32Array(8);
+  crypto.getRandomValues(array);
+
+  for (let i = 0; i < 10; i++) {
+    randomId += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return id + '-' + randomId;
+}
 const close = ()=>{
   dialogs.value.create.open = false;
   dialogs.value.create.day = undefined;
@@ -115,12 +130,15 @@ const close = ()=>{
 }
 const onEventDropped = (dropped: VuelCalendarDrop) => {
   calendarApi.configureEventsByParam('id', dropped.event.id!, {
-    start: dropped.date,
-    end: dropped.endDateCorrection
+    start: dropped.newStartDateTime,
+    end: dropped.newEndDateTime
   });
+  console.log('dropped', dropped)
+  // dropped.accept();
 };
 const onEventStartResized = (resized:VuelCalendarResize)=>{
   console.log(resized)
+
   resized.accept()
 }
 const onEventEndResized = (resized:VuelCalendarResize)=>{
@@ -139,7 +157,9 @@ const calendarOptions = useCalendarOptions(
     onEventDropped,
     onEventClicked,
     onEventStartResized,
-    onEventEndResized
+    onEventEndResized,
+    toast,
+    rand
 );
 
 const calendarColors = {
@@ -152,8 +172,55 @@ const calendarColors = {
 
 const eventsData = events;
 
+const setDaysForward = (event:HTMLInputElement)=>{
+  console.log('pawian', event)
+  if(!event.value){
+    return;
+  }
+  if(parseInt(event.value) > 62){
+    toast.add({ severity: 'warn', summary: 'Days Forward', detail: 'Must be lower than or equal to 62', life: 3000 });
+    return;
+  }
+  try{
+    calendarApi.setDaysForward(parseInt(event.value))
+  }catch{
+    toast.add({ severity: 'warn', summary: 'Days Forward', detail: 'Must be greater than 0', life: 3000 });
+  }
+}
+
+const setStartHour = (value:number) =>{
+  try{
+    calendarApi.setStartHour(value)
+  }catch{
+    toast.add({ severity: 'warn', summary: 'Start Hour', detail: 'Must be earlier than End Hour', life: 3000 });
+  }
+}
+const setStartDate = (value:Date) =>{
+  try{
+    calendarApi.setDateRange(value,fields.value.endDate)
+  }catch{
+      toast.add({ severity: 'warn', summary: 'Start Date', detail: 'Must be earlier than End Date', life: 3000 });
+  }
+}
+const setEndDate = (value:Date) =>{
+  try{
+    calendarApi.setDateRange(fields.value.startDate, value)
+  }catch{
+    toast.add({ severity: 'warn', summary: 'End Date', detail: 'Must be later than Start Date', life: 3000 });
+  }
+}
+const setEndHour = (value:number) =>{
+  try{
+    calendarApi.setEndHour(value)
+  }catch{
+    toast.add({ severity: 'warn', summary: 'End Hour', detail: 'Must be later than Start Hour', life: 3000 });
+  }
+}
 
 
 </script>
 
 
+<style>
+
+</style>

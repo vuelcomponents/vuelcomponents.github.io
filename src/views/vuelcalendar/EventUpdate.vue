@@ -42,6 +42,9 @@ export default defineComponent({
       })
       this.close()
     }
+  },
+  mounted(){
+    console.log('event', this.event.id!)
   }
 
 })

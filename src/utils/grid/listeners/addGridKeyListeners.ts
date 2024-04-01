@@ -7,5 +7,14 @@ export default (api:GridApi, updateDialog:Function)=>{
                 updateDialog(selected[selected.length-1])
                 break;
         }
+
+    })
+
+    window.addEventListener('resize', function () {
+        setTimeout(function () {
+            if (window.innerWidth <= 680) {
+                api.sizeColumnsToFit();
+            }
+        })
     })
 }

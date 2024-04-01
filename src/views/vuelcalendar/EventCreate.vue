@@ -42,8 +42,22 @@ export default defineComponent({
     }
   },
   methods:{
+   rand(id:any){
+        let randomId = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        const array = new Uint32Array(8);
+        crypto.getRandomValues(array);
+
+        for (let i = 0; i < 10; i++) {
+          randomId += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        return id + '-' + randomId;
+    },
     addEvent(){
       const event:VuelCalendarEvent = {
+        id:this.rand(0),
         start:this.fields.start,
         end:this.fields.end,
         label:this.fields.label,

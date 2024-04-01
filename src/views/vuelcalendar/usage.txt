@@ -38,6 +38,8 @@ const vuelCalendarOptions = ref<IVuelCalendarOptions>({
     draggableEvents:true,
     /* set if you want to implement resizable events -> onEventStartResized(resized:VuelCalendarResize); onEventEndResized(resized:VuelCalendarResize); -< then implement these methods to operate on resized events on timeline */
     resizableEvents:true,
+    showCursorTime:true,
+    // throwErrors:false,
     /* a function being resolved, after calendar Api is ready */
     onVuelCalendarApiReady: (api: IVuelCalendarApi) => {
         calendarApi.value = api;
@@ -63,10 +65,23 @@ const vuelCalendarOptions = ref<IVuelCalendarOptions>({
     {
         /* The function returns the event that was clicked, along with the time and date of start and end, as well as the data:any that belong to this event.*/
     },
-    onEventDropped:(event:VuelCalendarDrop)=>
+    onEventDropped:(dropped:VuelCalendarDrop)=>
     {
         /* property draggableEvents must be set to true in VuelCalendarOptions */
         /* The function returns the drop object(VuelCalendarEvent&VuelCalendarDay&MousEvent) that was being dragged, along with the time and date on timeline.*/
+        /* additional functions are included : dropped.decline() & dropped.accept() */
+    },
+    onEventStartResized:(resized:VuelCalendarResize)=>
+    {
+        /* property resizableEvents must be set to true in VuelCalendarOptions */
+        /* Event returns the resize object that was being resized, along with old and new start datetime. */
+        /* additional functions are included : resized.decline() & resized.accept() */
+    },
+     onEventEndResized:(resized:VuelCalendarResize)=>
+    {
+        /* property resizableEvents must be set to true in VuelCalendarOptions */
+        /* Event returns the resize object that was being resized, along with old and new end datetime. */
+        /* additional functions are included : resized.decline() & resized.accept() */
     },
 });
 
