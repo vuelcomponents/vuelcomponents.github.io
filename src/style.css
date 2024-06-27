@@ -1,17 +1,17 @@
-@import '@mdi/font/css/materialdesignicons.css';
-@import 'primevue/resources/themes/lara-light-blue/theme.css';
+@import "@mdi/font/css/materialdesignicons.css";
+@import "primevue/resources/themes/lara-light-blue/theme.css";
 @font-face {
-    font-family:"DM";
-    src:url("./assets/DM_Sans/DMSans-VariableFont_opsz,wght.ttf");
+  font-family: "DM";
+  src: url("./assets/DM_Sans/DMSans-VariableFont_opsz,wght.ttf");
 }
 
 @font-face {
-    font-family:"Dongle";
-    src:url("./assets/Dongle/Dongle-Regular.ttf");
+  font-family: "Dongle";
+  src: url("./assets/Dongle/Dongle-Regular.ttf");
 }
 @font-face {
-    font-family:"Yesteryear";
-    src:url("./assets/Yesteryear/Yesteryear-Regular.ttf");
+  font-family: "Yesteryear";
+  src: url("./assets/Yesteryear/Yesteryear-Regular.ttf");
 }
 @tailwind base;
 @tailwind components;
@@ -19,10 +19,10 @@
 
 .v-enter-active,
 .v-leave-active {
-    transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
-    opacity: 0;
+  opacity: 0;
 }

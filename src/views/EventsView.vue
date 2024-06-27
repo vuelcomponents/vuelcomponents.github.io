@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import Menu from "primevue/menu";
-import {menu} from "../utils/menu.ts";
+import { menu } from "../utils/menu.ts";
 
-import {useRoute} from "vue-router";
-import {onMounted, watch} from "vue";
-import {scrollTo} from "../utils/scrollTo.ts";
-import {events} from "../utils/libs/events.ts";
-const route:any = useRoute()
-onMounted(()=>{
-  scrollTo(route.query.docs)
-})
-watch(route, (to:any) => {
-  scrollTo(to.query.docs)
-})
+import { useRoute } from "vue-router";
+import { onMounted, watch } from "vue";
+import { scrollTo } from "../utils/scrollTo.ts";
+import { events } from "../utils/libs/events.ts";
+const route: any = useRoute();
+onMounted(() => {
+  scrollTo(route.query.docs);
+});
+watch(route, (to: any) => {
+  scrollTo(to.query.docs);
+});
 </script>
 
 <template>
@@ -23,21 +23,19 @@ watch(route, (to:any) => {
 
     <div class="col-span-5">
       <div v-for="(event, index) in events" :key="index">
-        <h1 class="text-3xl mt-4" :id="event.event"># {{event.event}}</h1>
-        <p class="mb-2">{{event.description}}</p>
-        <p class="mb-2">args: {{event.args}}</p>
+        <h1 class="text-3xl mt-4" :id="event.event"># {{ event.event }}</h1>
+        <p class="mb-2">{{ event.description }}</p>
+        <p class="mb-2">args: {{ event.args }}</p>
         <VCodeBlock
-            :code="event.code"
-            highlightjs
-            lang="javascript"
-            theme="a11y-light"
-            class="shadow mt-2 mb-2"
+          :code="event.code"
+          highlightjs
+          lang="javascript"
+          theme="a11y-light"
+          class="shadow mt-2 mb-2"
         />
       </div>
     </div>
   </section>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

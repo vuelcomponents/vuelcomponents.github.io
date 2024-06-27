@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import VuelCalendar from 'vuelcalendar';
+import VuelCalendar from "vuelcalendar";
 </script>
 
 <template>
-<VuelCalendar/>
+  <VuelCalendar />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

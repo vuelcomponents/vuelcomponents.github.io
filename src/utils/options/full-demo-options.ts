@@ -1,24 +1,27 @@
 import type {
   IVuelCalendarApi,
   IVuelCalendarOptions,
+  VuelCalendarDay,
+  VuelCalendarEvent,
   VuelCalendarOptions,
   VuelCalendarResize,
 } from "vuelcalendar";
 import m1 from "../../assets/m3.png";
 import w1 from "../../assets/w1.png";
-export const homeOptions = (
+export const fullDemoOptions = (
   setApi: (api: IVuelCalendarApi) => void,
+  configuration: any,
 ): VuelCalendarOptions => {
   const options: IVuelCalendarOptions = {
     height: 200,
     theme: "light",
-    startDate: new Date(),
-    endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
-    startHour: 7,
-    endHour: 21,
-    draggableEvents: true,
-    resizableEvents: true,
-    showCursorTime: true,
+    startDate: configuration.startDate,
+    endDate: configuration.endDate,
+    startHour: configuration.startHour,
+    endHour: configuration.endHour,
+    draggableEvents: configuration.settings.draggableEvents,
+    resizableEvents: configuration.settings.resizableEvents,
+    showCursorTime: configuration.settings.showCursorTime,
     throwErrors: false,
     renderer: "HomeRenderer",
     lockResize: false,
@@ -38,6 +41,27 @@ export const homeOptions = (
     //     }
     //     setResponse('resize', JSON.stringify(resized))
     // },
+    onEventClicked: (event: VuelCalendarEvent) => {
+      if (configuration.settings.clickBehaviour === "update") {
+        configuration.onEventClicked(event);
+      } else {
+        console.log(event);
+      }
+    },
+    onDayClicked: (day: VuelCalendarDay) => {
+      if (configuration.settings.dayClickBehaviour === "create") {
+        configuration.onDayClicked(day);
+      } else {
+        console.log(day);
+      }
+    },
+    onDayDblClicked: (day: VuelCalendarDay) => {
+      if (configuration.settings.dayDblClickBehaviour === "create") {
+        configuration.onDayClicked(day);
+      } else {
+        console.log(day);
+      }
+    },
     onVuelCalendarApiReady(api: IVuelCalendarApi) {
       setApi(api);
       api.setEvents([

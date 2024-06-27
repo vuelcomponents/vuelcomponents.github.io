@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import Menu from "primevue/menu";
-import {menu} from "../utils/menu.ts";
-import {methods} from "../utils/libs/api-functions.ts";
-import {useRoute} from "vue-router";
-import {onMounted, watch} from "vue";
-import {scrollTo} from "../utils/scrollTo.ts";
-const route:any = useRoute()
-onMounted(()=>{
-  scrollTo(route.query.docs)
-})
-watch(route, (to:any) => {
-  scrollTo(to.query.docs)
-})
+import { menu } from "../utils/menu.ts";
+import { methods } from "../utils/libs/api-functions.ts";
+import { useRoute } from "vue-router";
+import { onMounted, watch } from "vue";
+import { scrollTo } from "../utils/scrollTo.ts";
+const route: any = useRoute();
+onMounted(() => {
+  scrollTo(route.query.docs);
+});
+watch(route, (to: any) => {
+  scrollTo(to.query.docs);
+});
 </script>
 
 <template>
@@ -22,22 +22,22 @@ watch(route, (to:any) => {
 
     <div class="col-span-5">
       <div v-for="(method, index) in methods" :key="index">
-        <h1 class="text-3xl mt-4" :id="method.call"># {{method.name}}</h1>
-        <p class="mb-2">{{method.description}}</p>
-        <p class="mb-2">args: {{method.args}}</p>
-        <p class="mb-2">call: <strong>{{method.call}}</strong></p>
+        <h1 class="text-3xl mt-4" :id="method.call"># {{ method.name }}</h1>
+        <p class="mb-2">{{ method.description }}</p>
+        <p class="mb-2">args: {{ method.args }}</p>
+        <p class="mb-2">
+          call: <strong>{{ method.call }}</strong>
+        </p>
         <VCodeBlock
-            :code="method.code"
-            highlightjs
-            lang="javascript"
-            theme="a11y-light"
-            class="shadow mt-2 mb-2"
+          :code="method.code"
+          highlightjs
+          lang="javascript"
+          theme="a11y-light"
+          class="shadow mt-2 mb-2"
         />
       </div>
     </div>
   </section>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

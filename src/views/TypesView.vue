@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import Menu from "primevue/menu";
-import {menu} from "../utils/menu.ts";
-import {useRoute} from "vue-router";
-import {onMounted, watch} from "vue";
-import {scrollTo} from "../utils/scrollTo.ts";
-import {types} from "../utils/libs/types.ts";
+import { menu } from "../utils/menu.ts";
+import { useRoute } from "vue-router";
+import { onMounted, watch } from "vue";
+import { scrollTo } from "../utils/scrollTo.ts";
+import { types } from "../utils/libs/types.ts";
 
-const route:any = useRoute()
-onMounted(()=>{
-  scrollTo(route.query.docs)
-})
-watch(route, (to:any) => {
-  scrollTo(to.query.docs)
-})
+const route: any = useRoute();
+onMounted(() => {
+  scrollTo(route.query.docs);
+});
+watch(route, (to: any) => {
+  scrollTo(to.query.docs);
+});
 </script>
 
 <template>
@@ -23,19 +23,17 @@ watch(route, (to:any) => {
 
     <div class="col-span-5">
       <div v-for="(type, index) in types" :key="index">
-        <h1 class="text-3xl mt-4" :id="type.type"># {{type.type}}</h1>
+        <h1 class="text-3xl mt-4" :id="type.type"># {{ type.type }}</h1>
         <VCodeBlock
-            :code="type.structure"
-            highlightjs
-            lang="javascript"
-            theme="a11y-light"
-            class="shadow mt-2 mb-2"
+          :code="type.structure"
+          highlightjs
+          lang="javascript"
+          theme="a11y-light"
+          class="shadow mt-2 mb-2"
         />
       </div>
     </div>
   </section>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
