@@ -1,67 +1,96 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
+import WelcomeView from "../../views/WelcomeView.vue";
+import AboutView from "../../views/AboutView.vue";
+import GuideView from "../../views/GuideView.vue";
+import DemosView from "../../views/DemosView.vue";
+import ApiFunctionsView from "../../views/ApiFunctionsView.vue";
+import EventsView from "../../views/EventsView.vue";
+import ParamsView from "../../views/ParamsView.vue";
+import TypesView from "../../views/TypesView.vue";
+import LicenceView from "../../views/LicenceView.vue";
+import AuthorView from "../../views/AuthorView.vue";
+import IssuesView from "../../views/IssuesView.vue";
+import CalendarView from "@/views/CalendarView.vue";
+import MainView from "@/views/MainView.vue";
+import FullDemoCalendar from "@/views/FullDemos/FullDemoCalendar.vue";
 
-import HomeView from '@/views/HomeView.vue'
-import {Grid} from "@/utils/grid/Grid";
-import VuelCalendarView from "@/views/VuelCalendarView.vue";
-import CalendarPreview from "@/views/vuelcalendar/CalendarPreview.vue";
-import CalendarReadme from "@/views/vuelcalendar/CalendarReadme.vue";
-import CalendarFunctions from "@/views/vuelcalendar/CalendarFunctions.vue";
-import CalendarAbout from "@/views/vuelcalendar/CalendarAbout.vue";
-import CalendarTypes from "@/views/vuelcalendar/CalendarTypes.vue";
-import CalendarParams from "@/views/vuelcalendar/CalendarParams.vue";
-import CalendarEvents from "@/views/vuelcalendar/CalendarEvents.vue";
-import CalendarPerformance from "@/views/vuelcalendar/CalendarPerformance.vue";
 
 const routes = [
-    { path: '/', component: HomeView, redirect:{name:'preview'}},
     {
-        path:'/calendar',
-        component: VuelCalendarView,
-        redirect:{name:'preview'},
-        name:'calendar',
+      path:'/full-demo-calendar',
+      name:'FullDemoCalendar' ,
+      component: FullDemoCalendar
+    },
+    {
+        path: '/',
+        component: WelcomeView,
+        name:'Welcome',
         children:[
             {
-                path:'preview',
-                name:'preview',
-                component:CalendarPreview,
+                name:'MainView',
+                path:'',
+                component:MainView,
             },
             {
-                path:'readme',
-                name:'readme',
-                component:CalendarReadme,
+                name:'calendar',
+                path:'calendar',
+                component:CalendarView,
+                children:[
+                    {
+                        path:'guide',
+                        name:'Guide',
+                        component:GuideView
+                    },
+                    {
+                        path:'demos',
+                        name:'Demos',
+                        component:DemosView
+                    },
+                    {
+                        path:'api-functions',
+                        name:'ApiFunctions',
+                        component:ApiFunctionsView
+                    },
+                    {
+                        path:'events',
+                        name:'Events',
+                        component:EventsView
+                    },
+                    {
+                        path:'params',
+                        name:'Params',
+                        component:ParamsView
+                    },
+                    {
+                        path:'types',
+                        name:'Types',
+                        component:TypesView
+                    },
+                    {
+                        path:'licence',
+                        name:'Licence',
+                        component:LicenceView
+                    },
+                    {
+                        path:'author',
+                        name:'Author',
+                        component:AuthorView
+                    },
+                    {
+                        path:'issues',
+                        name:'Issues',
+                        component: IssuesView
+                    }
+                ]
             },
-            {
-                path:'functions',
-                name:'functions',
-                component:CalendarFunctions
-            },
-            {
-                path:'events',
-                name:'events',
-                component:CalendarEvents
-            },
-            {
-                path:'params',
-                name:'params',
-                component:CalendarParams
-            },
-            {
-                path:'types',
-                name:'types',
-                component:CalendarTypes
-            },
-            {
-                path:'about',
-                name:'about',
-                component:CalendarAbout
-            },
-            {
-                path:'performance',
-                name:'performance',
-                component:CalendarPerformance
-            },
+            // {
+            //     path:'',
+            //     name:'About',
+            //     component:AboutView
+            // },
+
         ]
-    }
+    },
 
 ]
 

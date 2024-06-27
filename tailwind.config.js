@@ -6,14 +6,21 @@ export default {
     extend: {
       fontFamily: {
         mulish: 'Mulish, sans-serif',
-        orbitron: 'Orbitron, sans-serif'
+        orbitron: 'Orbitron, sans-serif',
+        yesteryear:'Yesteryear, cursive',
 
       },
       fontSize:{
         'xl-important':['2.25rem',{important:true}]
       },
       minHeight: {
-        'screen-minus-navbar': `calc(theme('height.screen') - theme('height.16'))`
+        'screen-minus-navbar': `calc(theme('height.screen') - 110px)`
+      },
+      height:{
+        'screen-minus-navbar': `calc(theme('height.screen') - 110px)`
+      },
+      width:{
+        'full-minus-100':`calc(theme('width.screen') - 100px)`
       },
       colors: {
         primary: {
@@ -48,6 +55,19 @@ export default {
           yellow:'#f2d066',
           kamikaze:'#1a2434',
           lightkamikaze:'#334155'
+        },
+        dark:{
+          text:'red'
+        },
+        gang:{
+          0:'#ffffff',
+          100:'#f7f9fd',
+          200:'#a08ffb',
+          300:'#503bfa',
+          400:'#c1f629',
+          410:'#c1f62905',
+          500:'#0a133b',
+          600:'#0a133b',
         }
       }
     }
